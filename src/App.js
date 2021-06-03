@@ -1,13 +1,17 @@
+import {useState} from 'react';
 import './App.css';
-import { Map, GoogleApiWrapper } from 'google-maps-react';
+import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
 
 const mapStyles = {
   width: '100%',
   height: '100%'
 };
 
-function App(props) {
-  const {google} = props;
+function App({google}) {
+  
+
+
+  
   return (
     <div className="App">
       <Map
@@ -18,9 +22,11 @@ function App(props) {
           {
             lat: -1.2884,
             lng: 36.8233
-          }
+          } 
         }
-      />
+      >
+        <Marker/>
+        </Map>
     </div>
   );
 }
