@@ -1,36 +1,31 @@
-import {useState} from 'react';
-import './App.css';
-import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
+import React from 'react'
+import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 
-const mapStyles = {
+const containerStyle = {
   width: '100%',
-  height: '100%'
+  height: '100vh'
 };
 
-function App({google}) {
-  
+const center = {
+  lat: -3.745,
+  lng: -38.523
+};
 
-
-  
+const App=()=> {
   return (
-    <div className="App">
-      <Map
-        google={google}
-        zoom={14}
-        style={mapStyles}
-        initialCenter={
-          {
-            lat: -1.2884,
-            lng: 36.8233
-          } 
-        }
+    <LoadScript
+      googleMapsApiKey={process.env.REACT_APP_GOOGLE_API}
+    >
+      <GoogleMap
+        mapContainerStyle={containerStyle}
+        center={center}
+        zoom={15}
       >
-        <Marker/>
-        </Map>
-    </div>
-  );
+        { /* Child components, such as markers, info windows, etc. */ }
+        <Marker position={center}/>
+      </GoogleMap>
+    </LoadScript>
+  )
 }
 
-export default GoogleApiWrapper({
-  apiKey: process.env.REACT_APP_GOOGLE_API
-}) (App);
+export default React.memo(App)
